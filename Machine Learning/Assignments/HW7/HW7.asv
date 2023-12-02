@@ -1,0 +1,15 @@
+% Load data set
+Celldnadata = readtable('ML_HW_Data_CellDNA.csv');
+
+% Update all non-zero = 1 for last (14th) column
+Celldnadata_1 = table2array(Celldnadata)
+lId = Celldnadata_1(:,14) > 0 ;
+Celldnadata_1(lId,14) = 1 ;
+
+% Dataset in to independent(X) and response variable(Y)
+X = Celldnadata_1(:, 1 : 13);
+Y = Celldnadata_1(:, 14);
+
+% Standardize the all numerical variables
+X_STD = zscore((Celldnadata_1(:, 1:13)));
+
